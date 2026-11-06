@@ -1,4 +1,4 @@
-package com.example.socialadapter.application;
+package com.example.collectorrunner.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
