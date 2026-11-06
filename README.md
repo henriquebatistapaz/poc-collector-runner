@@ -1,6 +1,6 @@
 # Mini Projeto 1 — Social API Adapter
 
-**Status:** especificação inicial; esqueleto Java criado; funcionalidades do MVP ainda pendentes
+**Status:** primeira fatia implementada; fixtures sintéticas normalizadas; API e persistência pendentes
 **Visibilidade:** repositório privado  
 **Tipo:** mini projeto independente, inspirado em padrões de integração relatados na experiência profissional. Não contém código, dados, credenciais ou materiais de empregadores.
 
@@ -50,8 +50,8 @@ Java 21, Spring Boot, Maven, PostgreSQL, JUnit 5, Mockito, Docker Compose e Open
 
 ## Etapas
 
-1. Definir modelo e fixtures fictícias.
-2. Implementar adaptadores e testes de normalização.
+1. ~~Definir modelo e fixtures fictícias.~~
+2. ~~Implementar adaptadores e testes de normalização.~~
 3. Adicionar persistência e idempotência.
 4. Expor consultas REST.
 5. Documentar execução e completar testes.
