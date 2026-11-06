@@ -1,6 +1,6 @@
 # Mini Projeto 1 — Social API Adapter
 
-**Status:** primeira fatia implementada; fixtures sintéticas normalizadas; API e persistência pendentes
+**Status:** fixtures sintéticas, deduplicação em memória e endpoint inicial com OpenAPI implementados; consultas e persistência pendentes
 **Visibilidade:** repositório privado  
 **Tipo:** mini projeto independente, inspirado em padrões de integração relatados na experiência profissional. Não contém código, dados, credenciais ou materiais de empregadores.
 
@@ -18,11 +18,15 @@ Integrações externas precisam isolar diferenças entre formatos, validar dados
 - Dois adaptadores simulados que leem fixtures JSON locais em formatos diferentes.
 - Modelo canônico SocialPost: id, source, externalId, author, text, publishedAt e permalink.
 - Validação de campos obrigatórios e tratamento de datas inválidas.
-- Normalização e prevenção de duplicidade por source + externalId.
+- Normalização e prevenção de duplicidade em memória por source + externalId (reinicia com o processo).
 - Persistência em PostgreSQL.
 - API REST para importar fixture e consultar posts com filtros por fonte/período, paginação e busca por ID.
 - Testes dos adaptadores, serviço, persistência e API.
 - OpenAPI e instruções locais com Docker Compose.
+
+## API inicial
+
+`POST /v1/posts` aceita um post normalizado sintético e responde `201 Created` na primeira ocorrência e `200 OK` para repetição de `(source, externalId)`. OpenAPI JSON: `http://localhost:8080/v3/api-docs`; Swagger UI: `http://localhost:8080/swagger-ui.html`.
 
 ## Endpoints propostos
 
@@ -52,9 +56,11 @@ Java 21, Spring Boot, Maven, PostgreSQL, JUnit 5, Mockito, Docker Compose e Open
 
 1. ~~Definir modelo e fixtures fictícias.~~
 2. ~~Implementar adaptadores e testes de normalização.~~
-3. Adicionar persistência e idempotência.
-4. Expor consultas REST.
-5. Documentar execução e completar testes.
+3. ~~Adicionar deduplicação em memória por source + externalId.~~
+4. ~~Expor ingestão sintética inicial e documentação OpenAPI/Swagger.~~
+5. Adicionar persistência durável e idempotência.
+6. Expor consultas REST.
+7. Documentar execução e completar testes.
 
 ## Relação com experiência profissional
 
