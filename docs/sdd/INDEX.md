@@ -16,4 +16,4 @@ Rules: agents NEVER set `Approved`. A spec that needs rework after approval goes
 | Spec | Issue | Status | Notes |
 |------|-------|--------|-------|
 | [`bootstrap-skeleton/`](bootstrap-skeleton/spec.md) | — | Draft | Initial scaffold and TODOs only; no MVP behavior |
-| [`in-memory-social-deduplication/`](in-memory-social-deduplication/spec.md) | — | In progress | User-authorized in-memory first-seen deduplication by source and external ID; local AI-Ready file only |
+| [`in-memory-social-deduplication/`](in-memory-social-deduplication/spec.md) | — | In progress | User-authorized in-memory first-seen deduplication by source and external ID; local AI-Init file only |
