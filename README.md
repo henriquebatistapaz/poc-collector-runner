@@ -1,67 +1,44 @@
 # Mini Projeto 1 — Social API Adapter
 
-**Status:** fixtures sintéticas, deduplicação em memória e endpoint inicial com OpenAPI implementados; consultas e persistência pendentes
-**Visibilidade:** repositório privado  
-**Tipo:** mini projeto independente, inspirado em padrões de integração relatados na experiência profissional. Não contém código, dados, credenciais ou materiais de empregadores.
+**Status:** adapters para fixtures sintéticas, normalização, deduplicação em memória, endpoint de ingestão e OpenAPI implementados. Persistência e consultas continuam no TODO.
+**Visibilidade:** privado.
+**Tipo:** mini projeto independente; não contém código, dados ou credenciais de empregadores.
 
 ## Objetivo
 
-Construir um serviço pequeno em Java que receba publicações sintéticas de uma fonte social simulada, converta formatos diferentes para um modelo interno único e permita consultar registros normalizados.
+Demonstrar como formatos de fontes sociais distintas podem ser convertidos em um modelo Java comum e recebidos por uma API com deduplicação.
 
-## Problema demonstrado
+## Implementado
 
-Integrações externas precisam isolar diferenças entre formatos, validar dados, lidar com campos opcionais e manter o domínio independente do fornecedor.
+- Adapters Alpha e Beta para fixtures JSON locais em formatos diferentes.
+- Modelo `NormalizedSocialPost` com fonte, ID externo, autor, texto, data e permalink.
+- Validação de dados e datas das fixtures.
+- Deduplicação em memória por `(source, externalId)`; os IDs vistos são perdidos ao reiniciar.
+- `POST /v1/posts`: `201 Created` para primeira ocorrência e `200 OK` para duplicata.
+- OpenAPI em `/v3/api-docs` e Swagger UI em `/swagger-ui/index.html`.
+- Testes JUnit para adapters, leitura de JSON, deduplicação e API.
 
-## Escopo do MVP
+## Executar
 
-- Uma aplicação modular Spring Boot.
-- Dois adaptadores simulados que leem fixtures JSON locais em formatos diferentes.
-- Modelo canônico SocialPost: id, source, externalId, author, text, publishedAt e permalink.
-- Validação de campos obrigatórios e tratamento de datas inválidas.
-- Normalização e prevenção de duplicidade em memória por source + externalId (reinicia com o processo).
-- Persistência em PostgreSQL.
-- API REST para importar fixture e consultar posts com filtros por fonte/período, paginação e busca por ID.
-- Testes dos adaptadores, serviço, persistência e API.
-- OpenAPI e instruções locais com Docker Compose.
+```bash
+mvn test
+mvn spring-boot:run
+```
 
-## API inicial
+Exemplo de ingestão:
 
-`POST /v1/posts` aceita um post normalizado sintético e responde `201 Created` na primeira ocorrência e `200 OK` para repetição de `(source, externalId)`. OpenAPI JSON: `http://localhost:8080/v3/api-docs`; Swagger UI: `http://localhost:8080/swagger-ui.html`.
+```bash
+curl -i http://localhost:8080/v1/posts \
+  -H 'Content-Type: application/json' \
+  -d '{"source":"demo","externalId":"post-001","author":"sample-user","text":"Synthetic post","publishedAt":"2026-01-01T12:00:00Z","permalink":"https://example.org/posts/1"}'
+```
 
-## Endpoints propostos
+Envie o mesmo JSON novamente para observar a resposta de duplicata. Não há acesso a redes sociais reais nem persistência durável.
 
-- POST /api/v1/ingestions/{source} — importar uma fixture simulada.
-- GET /api/v1/posts — listar com filtros e paginação.
-- GET /api/v1/posts/{id} — consultar um registro normalizado.
+## Próximos passos
 
-## Requisitos e limites
+- Persistência e consultas REST.
+- Integração dos adapters de fixture com uma rota controlada.
+- Paginação e filtros após a persistência.
 
-- Sem chamadas a redes sociais reais nem tokens reais.
-- Erros consistentes e logs sem dados pessoais desnecessários.
-- Fora do escopo: OAuth real, dashboards, análise de sentimento, interface web, Kafka/RabbitMQ e nuvem.
-
-## Critérios de aceite
-
-1. Os dois formatos viram o mesmo modelo canônico.
-2. Dados inválidos geram erro claro sem descartar outros registros válidos da fixture.
-3. Reimportar a fixture não cria duplicatas.
-4. Filtros, paginação e busca por ID têm testes.
-5. README documenta execução, exemplos e limitações.
-
-## Stack prevista
-
-Java 21, Spring Boot, Maven, PostgreSQL, JUnit 5, Mockito, Docker Compose e OpenAPI.
-
-## Etapas
-
-1. ~~Definir modelo e fixtures fictícias.~~
-2. ~~Implementar adaptadores e testes de normalização.~~
-3. ~~Adicionar deduplicação em memória por source + externalId.~~
-4. ~~Expor ingestão sintética inicial e documentação OpenAPI/Swagger.~~
-5. Adicionar persistência durável e idempotência.
-6. Expor consultas REST.
-7. Documentar execução e completar testes.
-
-## Relação com experiência profissional
-
-Exercício independente baseado em competências relatadas (integrações de APIs, normalização e persistência). Não representa o sistema interno de uma empresa, nem afirma que estes detalhes descrevam um produto existente.
+Kafka e brokers não fazem parte deste projeto mini.
