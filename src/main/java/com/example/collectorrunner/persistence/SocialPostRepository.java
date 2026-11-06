@@ -1,4 +1,4 @@
-package com.example.socialadapter.persistence;
+package com.example.collectorrunner.persistence;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,6 @@
-package com.example.socialadapter.application;
+package com.example.collectorrunner.application;
 
-import com.example.socialadapter.domain.NormalizedSocialPost;
+import com.example.collectorrunner.domain.NormalizedSocialPost;
 import java.util.List;
 
 /** Converts one synthetic source fixture format to the canonical model. */
