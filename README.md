@@ -1,6 +1,6 @@
 # Mini Projeto 1 — Social API Adapter
 
-**Status:** especificação inicial; implementação ainda não iniciada  
+**Status:** especificação inicial; esqueleto Java criado; funcionalidades do MVP ainda pendentes
 **Visibilidade:** repositório privado  
 **Tipo:** mini projeto independente, inspirado em padrões de integração relatados na experiência profissional. Não contém código, dados, credenciais ou materiais de empregadores.
 
