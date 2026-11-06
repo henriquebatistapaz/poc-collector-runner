@@ -11,7 +11,7 @@ Provide a minimal Java 21/Spring Boot/Maven structure and project guidance so la
 ## 3. Scope
 ### 3.1 In scope
 - One Spring Boot application entry point and minimal domain/application contracts.
-- Maven build metadata, `.gitignore`, AI-Ready documentation, and an actionable TODO list.
+- Maven build metadata, `.gitignore`, AI-Init documentation, and an actionable TODO list.
 - Preserve the original product scope in `README.md`; update its status to reflect that the skeleton exists.
 
 ### 3.2 Out of scope
@@ -35,7 +35,7 @@ Single Maven module. `domain` contains small model types; `application` contains
 ## 6. Implementation Plan
 1. Add the Maven build and Java package structure.
 2. Add minimal project-specific types and TODO documentation.
-3. Install the lean AI-Ready prompts, agents, skills, and project guidance.
+3. Install the lean AI-Init prompts, agents, skills, and project guidance.
 4. Compile the skeleton without running tests.
 
 ## 7. Acceptance Criteria
@@ -51,7 +51,7 @@ No runtime operations are implemented. Run locally with `mvn spring-boot:run` af
 - Risk: Skeleton contracts may change as behavior is specified. Mitigation: treat them as provisional and update them in a follow-up SDD.
 
 ## 10. Rollback
-Remove the scaffold and AI-Ready files, restore the previous README status line, and retain the original product specification.
+Remove the scaffold and AI-Init files, restore the previous README status line, and retain the original product specification.
 
 ## 11. References
 - `README.md` — initial product specification.
