@@ -38,4 +38,14 @@ class SocialPostControllerTest {
                 .andExpect(jsonPath("$.openapi").exists())
                 .andExpect(jsonPath("$.paths['/v1/posts']").exists());
     }
+
+    @Test
+    void rejectsPostsWithoutRequiredDeduplicationIdentity() throws Exception {
+        mockMvc.perform(post("/v1/posts").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"source\":\"demo\",\"externalId\":\" \",\"author\":\"sample\"}"))
+                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(post("/v1/posts").contentType(MediaType.APPLICATION_JSON).content("null"))
+                .andExpect(status().isBadRequest());
+    }
 }

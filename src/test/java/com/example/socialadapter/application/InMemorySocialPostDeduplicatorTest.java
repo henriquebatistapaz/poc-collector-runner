@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.example.socialadapter.domain.NormalizedSocialPost;
 import java.time.Instant;
 import java.util.List;
+import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 class InMemorySocialPostDeduplicatorTest {
@@ -37,6 +38,18 @@ class InMemorySocialPostDeduplicatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> deduplicator.acceptNew(List.of(valid, missingId)));
         assertEquals(List.of(valid), deduplicator.acceptNew(List.of(valid)));
+    }
+
+    @Test
+    void rejectsNullCollectionNullPostAndMissingIdentityFields() {
+        assertThrows(IllegalArgumentException.class, () -> deduplicator.acceptNew(null));
+        assertThrows(IllegalArgumentException.class,
+                () -> deduplicator.acceptNew(Collections.singletonList(null)));
+        assertThrows(IllegalArgumentException.class,
+                () -> deduplicator.acceptNew(List.of(post(" ", "id", "missing source"))));
+        assertThrows(IllegalArgumentException.class,
+                () -> deduplicator.acceptNew(List.of(post("source", " ", "missing ID"))));
+        assertEquals(List.of(), deduplicator.acceptNew(List.of()));
     }
 
     private NormalizedSocialPost post(String source, String id, String text) {
