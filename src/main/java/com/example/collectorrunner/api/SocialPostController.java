@@ -17,12 +17,10 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/v1/posts")
 @Tag(name = "Social posts", description = "Synthetic normalized social post ingestion")
+@lombok.RequiredArgsConstructor
 public class SocialPostController {
     private final SocialPostPersistenceService posts;
 
-    public SocialPostController(SocialPostPersistenceService posts) {
-        this.posts = posts;
-    }
 
     @PostMapping
     @Operation(summary = "Accept a normalized post unless its source and external ID were seen")
