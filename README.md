@@ -1,4 +1,4 @@
-# Social API Adapter Mini
+# Collector Runner Mini
 
 Mini projeto Java privado para normalizar posts de fontes sintéticas, deduplicar por `(source, externalId)` e persistir os registros em PostgreSQL.
 
