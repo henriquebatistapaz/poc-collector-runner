@@ -1,4 +1,4 @@
-package com.example.socialadapter.application;
+package com.example.collectorrunner.application;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

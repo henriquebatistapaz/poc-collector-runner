@@ -1,9 +1,9 @@
-package com.example.socialadapter.application;
+package com.example.collectorrunner.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.example.socialadapter.domain.NormalizedSocialPost;
+import com.example.collectorrunner.domain.NormalizedSocialPost;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
