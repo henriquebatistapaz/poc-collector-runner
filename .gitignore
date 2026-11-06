@@ -6,3 +6,11 @@ target/
 .env.*
 !.env.example
 .DS_Store
+/AGENTS.md
+/CLAUDE.md
+/.github/copilot-instructions.md
+/.github/prompts/
+/.github/agents/
+/.github/instructions/
+/.github/skills/
+/docs/
