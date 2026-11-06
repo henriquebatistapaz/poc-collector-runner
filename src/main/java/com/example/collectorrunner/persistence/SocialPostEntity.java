@@ -10,6 +10,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.time.Instant;
 
+@lombok.Getter
+@lombok.NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @Entity
 @Table(name = "social_posts", uniqueConstraints = @UniqueConstraint(
         name = "uk_social_posts_source_external_id", columnNames = {"source", "external_id"}))
@@ -36,7 +38,6 @@ public class SocialPostEntity {
     @Column(length = 2048)
     private String permalink;
 
-    protected SocialPostEntity() {}
 
     public SocialPostEntity(NormalizedSocialPost post) {
         this.source = post.source().trim();
