@@ -17,7 +17,9 @@ class SocialSourceAdapterTest {
 
     @Test
     void alphaFixtureMapsToCanonicalPost() throws IOException {
-        List<NormalizedSocialPost> posts = new AlphaSocialSourceAdapter(objectMapper)
+        AlphaSocialSourceAdapter adapter = new AlphaSocialSourceAdapter(objectMapper);
+        assertEquals("alpha", adapter.sourceName());
+        List<NormalizedSocialPost> posts = adapter
                 .parseFixture(readFixture("/fixtures/alpha-posts.json"));
 
         assertEquals(List.of(new NormalizedSocialPost(
@@ -28,7 +30,9 @@ class SocialSourceAdapterTest {
 
     @Test
     void betaFixtureMapsDifferentFieldNamesToSameCanonicalModel() throws IOException {
-        List<NormalizedSocialPost> posts = new BetaSocialSourceAdapter(objectMapper)
+        BetaSocialSourceAdapter adapter = new BetaSocialSourceAdapter(objectMapper);
+        assertEquals("beta", adapter.sourceName());
+        List<NormalizedSocialPost> posts = adapter
                 .parseFixture(readFixture("/fixtures/beta-posts.json"));
 
         assertEquals(List.of(new NormalizedSocialPost(
@@ -47,6 +51,18 @@ class SocialSourceAdapterTest {
                 () -> new AlphaSocialSourceAdapter(objectMapper).parseFixture(fixture));
 
         assertEquals("Field must be an ISO-8601 instant: created_at", error.getMessage());
+    }
+
+    @Test
+    void rejectsInvalidJsonMissingArraysAndRequiredFields() {
+        AlphaSocialSourceAdapter alpha = new AlphaSocialSourceAdapter(objectMapper);
+        BetaSocialSourceAdapter beta = new BetaSocialSourceAdapter(objectMapper);
+
+        assertThrows(IllegalArgumentException.class, () -> alpha.parseFixture("{"));
+        assertThrows(IllegalArgumentException.class, () -> alpha.parseFixture("[]"));
+        assertThrows(IllegalArgumentException.class, () -> alpha.parseFixture("{}"));
+        assertThrows(IllegalArgumentException.class, () -> alpha.parseFixture("{\"posts\":[{}]}"));
+        assertThrows(IllegalArgumentException.class, () -> beta.parseFixture("{\"items\":[{}]}"));
     }
 
     private String readFixture(String path) throws IOException {

@@ -26,6 +26,9 @@ public class SocialPostController {
     @PostMapping
     @Operation(summary = "Accept a normalized post unless its source and external ID were seen")
     public ResponseEntity<PostIngestionResponse> ingest(@RequestBody NormalizedSocialPost post) {
+        if (post == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Post body is required");
+        }
         try {
             List<NormalizedSocialPost> accepted = deduplicator.acceptNew(List.of(post));
             String status = accepted.isEmpty() ? "duplicate" : "accepted";
