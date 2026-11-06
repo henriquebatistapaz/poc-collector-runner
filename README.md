@@ -1,4 +1,4 @@
-# Social API Adapter Mini
+# Collector Runner Mini
 
 Mini projeto Java privado para normalizar posts de fontes sintéticas, deduplicar por `(source, externalId)` e persistir os registros em PostgreSQL.
 
@@ -16,7 +16,7 @@ As fontes Alpha/Beta são fixtures inventadas para testes; o projeto não acessa
 
 ## Integração
 
-Este projeto continua independente e também é usado como biblioteca Maven pelo repositório privado `content-collection-hub-mini`, que reaproveita o código para normalizar posts das fontes Alpha/Beta. Por isso, `mvn package` gera dois jars: o comum, usado como dependência, e o executável com sufixo `-exec`. Para o hub enxergar a versão local, rode `mvn install` neste projeto.
+Este projeto continua independente e também é usado como biblioteca Maven pelo repositório privado `dashboard-mini`, que reaproveita o código para normalizar posts das fontes Alpha/Beta. Por isso, `mvn package` gera dois jars: o comum, usado como dependência, e o executável com sufixo `-exec`. Para o hub enxergar a versão local, rode `mvn install` neste projeto.
 
 ## Executar testes
 
