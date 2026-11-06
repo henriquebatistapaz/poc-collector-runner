@@ -1,10 +1,13 @@
 # TODO
 
-Initial scope is limited to repository structure and TODOs. Implement each item through a reviewed and approved SDD.
+Initial implementation slice is complete; the remaining MVP work is listed below.
 
-- [ ] Define two synthetic JSON fixture formats and their provenance-free examples.
-- [ ] Implement adapters that map fixtures into the canonical post model.
-- [ ] Define validation and duplicate handling for source plus external ID.
+- [x] Define two synthetic JSON fixture formats and their provenance-free examples.
+- [x] Implement adapters that map fixtures into the canonical post model.
+- [x] Validate required fields and ISO-8601 publication timestamps.
+- [x] Add in-memory duplicate handling by source plus external ID; state resets on restart.
+- [ ] Add durable duplicate handling with persistence.
 - [ ] Add persistence and REST queries only after a follow-up SDD is approved.
-- [ ] Add focused unit and integration tests alongside behavior.
+- [x] Add focused unit tests for both formats and malformed timestamps.
+- [x] Expose synthetic post ingestion with OpenAPI and Swagger UI.
 - [ ] Revisit this checklist as decisions are made; do not expand scope silently.
