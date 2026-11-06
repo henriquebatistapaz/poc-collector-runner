@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@lombok.RequiredArgsConstructor
 public class SocialPostPersistenceService {
     private final SocialPostRepository repository;
 
-    public SocialPostPersistenceService(SocialPostRepository repository) {
-        this.repository = repository;
-    }
 
     @Transactional
     public List<NormalizedSocialPost> acceptNew(List<NormalizedSocialPost> posts) {
