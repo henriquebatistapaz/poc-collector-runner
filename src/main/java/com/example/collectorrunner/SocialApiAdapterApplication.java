@@ -1,4 +1,4 @@
-package com.example.socialadapter;
+package com.example.collectorrunner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

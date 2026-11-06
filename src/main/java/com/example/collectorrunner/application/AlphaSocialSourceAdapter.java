@@ -1,6 +1,6 @@
-package com.example.socialadapter.application;
+package com.example.collectorrunner.application;
 
-import com.example.socialadapter.domain.NormalizedSocialPost;
+import com.example.collectorrunner.domain.NormalizedSocialPost;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;

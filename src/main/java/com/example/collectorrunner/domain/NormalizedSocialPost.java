@@ -1,4 +1,4 @@
-package com.example.socialadapter.domain;
+package com.example.collectorrunner.domain;
 
 import java.time.Instant;
 

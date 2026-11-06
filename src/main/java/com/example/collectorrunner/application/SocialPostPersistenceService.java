@@ -1,8 +1,8 @@
-package com.example.socialadapter.application;
+package com.example.collectorrunner.application;
 
-import com.example.socialadapter.domain.NormalizedSocialPost;
-import com.example.socialadapter.persistence.SocialPostEntity;
-import com.example.socialadapter.persistence.SocialPostRepository;
+import com.example.collectorrunner.domain.NormalizedSocialPost;
+import com.example.collectorrunner.persistence.SocialPostEntity;
+import com.example.collectorrunner.persistence.SocialPostRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
