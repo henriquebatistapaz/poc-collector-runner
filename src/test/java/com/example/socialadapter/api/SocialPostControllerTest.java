@@ -32,11 +32,25 @@ class SocialPostControllerTest {
     }
 
     @Test
+    void listsPersistedPosts() throws Exception {
+        String body = """
+                {"source":"list-test","externalId":"post-2","author":"sample","text":"persisted",
+                 "publishedAt":"2026-01-02T00:00:00Z","permalink":"https://example.test/post-2"}
+                """;
+        mockMvc.perform(post("/v1/posts").contentType(MediaType.APPLICATION_JSON).content(body))
+                .andExpect(status().isCreated());
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/v1/posts"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[?(@.externalId == 'post-2')]").exists());
+    }
+
+    @Test
     void exposesOpenApiDocument() throws Exception {
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/v3/api-docs"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.openapi").exists())
-                .andExpect(jsonPath("$.paths['/v1/posts']").exists());
+                .andExpect(jsonPath("$.paths['/v1/posts'].post").exists())
+                .andExpect(jsonPath("$.paths['/v1/posts'].get").exists());
     }
 
     @Test
