@@ -14,6 +14,10 @@ Mini projeto Java privado para normalizar posts de fontes sintéticas, deduplica
 
 As fontes Alpha/Beta são fixtures inventadas para testes; o projeto não acessa redes sociais reais.
 
+## Integração
+
+Este projeto continua independente e também é usado como biblioteca Maven pelo repositório privado `content-collection-hub-mini`, que reaproveita o código para normalizar posts das fontes Alpha/Beta. Por isso, `mvn package` gera dois jars: o comum, usado como dependência, e o executável com sufixo `-exec`. Para o hub enxergar a versão local, rode `mvn install` neste projeto.
+
 ## Executar testes
 
 ```bash
