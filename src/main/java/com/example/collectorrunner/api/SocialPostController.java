@@ -1,7 +1,7 @@
-package com.example.socialadapter.api;
+package com.example.collectorrunner.api;
 
-import com.example.socialadapter.application.SocialPostPersistenceService;
-import com.example.socialadapter.domain.NormalizedSocialPost;
+import com.example.collectorrunner.application.SocialPostPersistenceService;
+import com.example.collectorrunner.domain.NormalizedSocialPost;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;

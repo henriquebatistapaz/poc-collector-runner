@@ -1,6 +1,6 @@
-package com.example.socialadapter.persistence;
+package com.example.collectorrunner.persistence;
 
-import com.example.socialadapter.domain.NormalizedSocialPost;
+import com.example.collectorrunner.domain.NormalizedSocialPost;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

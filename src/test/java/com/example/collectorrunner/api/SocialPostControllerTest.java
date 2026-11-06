@@ -1,4 +1,4 @@
-package com.example.socialadapter.api;
+package com.example.collectorrunner.api;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
