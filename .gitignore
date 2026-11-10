@@ -6,7 +6,7 @@ target/
 .env.*
 !.env.example
 .DS_Store
-/.ai-ready.json
+/.ai-init.json
 /AGENTS.md
 /CLAUDE.md
 /.github/copilot-instructions.md
@@ -14,4 +14,3 @@ target/
 /.github/agents/
 /.github/instructions/
 /.github/skills/
-/docs/
