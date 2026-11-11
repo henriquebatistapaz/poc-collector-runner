@@ -1,14 +1,15 @@
 services:
   postgres:
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     environment:
+      PGDATA: /var/lib/postgresql/data
       POSTGRES_DB: social_adapter
       POSTGRES_USER: social_adapter
       POSTGRES_PASSWORD: ${DB_PASSWORD:-social_adapter_local}
     ports:
       - "5432:5432"
     volumes:
-      - social_adapter_postgres:/var/lib/postgresql/data
+      - social_adapter_postgres:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U social_adapter -d social_adapter"]
       interval: 5s
