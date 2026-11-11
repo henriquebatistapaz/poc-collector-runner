@@ -4,7 +4,7 @@ Biblioteca Maven e API Spring Boot que grava itens coletados no PostgreSQL.
 
 ## Validação local
 
-Use OpenJDK 27.0.1.0.3, Spring Boot 4.1.2 e Maven 3.9 ou superior. Execute os comandos a partir da raiz do repositório.
+Use JDK 27.0.x e Maven 3.9.16. Execute os comandos a partir da raiz do repositório.
 
 ```sh
 mvn -f ../poc-collector/pom.xml clean install
@@ -13,6 +13,12 @@ docker compose up -d postgres
 mvn clean verify
 mvn spring-boot:run
 ```
+
+## Variáveis de retenção e takedown
+
+- `SERVER_ADDRESS` usa `127.0.0.1` por padrão; mantenha a API standalone em loopback.
+- `RUNNER_ADMIN_API_KEY` habilita o `DELETE /v1/posts/{source}/{externalId}`; sem valor, a operação retorna 403.
+- `POST_RETENTION_DAYS` habilita a remoção agendada; padrão `0` mantém retenção automática desativada. Configure um período aprovado para o ambiente antes de ativá-la.
 
 ## Pendências de publicação
 
