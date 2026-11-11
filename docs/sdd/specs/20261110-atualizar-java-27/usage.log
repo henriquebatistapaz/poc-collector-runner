@@ -1,0 +1,5 @@
+2026-11-10T23:18:46-03:00 | /new-spec | model: gpt-6.1-sol | in: ~1900 | out: ~1600
+2026-11-10T23:21:09-03:00 | /next + @qa | REVISE SPEC | [BLOCKER] AC-02/§9.1: fixar revisão de poc-collector e executar Failsafe sem pular o teste PostgreSQL. Definir resultado esperado para item repetido e indisponibilidade do banco e garantir que segredos de conectores não apareçam nos logs. [IMPORTANT] §10/AC-04: identificar a revisão, imagem ou artefato anterior aplicável e o smoke a repetir após o retorno.
+2026-11-11T06:41:16-03:00 | /test-plan | model: GPT-6 Codex | in: ~5200 | out: ~1200
+2026-11-11T07:08:00-03:00 | /implement-spec | Java 27.0.1 + Maven 3.9.16, Boot 4.1.2: clean install passou, 22 testes; consumer dashboard clean verify passou, 39 testes. Docker/PostgreSQL e inspeções AC-03/04 pendentes.
+2026-11-11T07:29:00-03:00 | /validate-implementation | Runner atualizado: clean verify passou (27 testes); `-Ppostgres-it verify` falhou por Docker ausente. Dashboard com runner atualizado: clean verify passou (39 testes).

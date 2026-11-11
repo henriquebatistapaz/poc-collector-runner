@@ -15,5 +15,16 @@ Rules: agents NEVER set `Approved`. A spec that needs rework after approval goes
 
 | Spec | Issue | Status | Notes |
 |------|-------|--------|-------|
-| [`bootstrap-skeleton/`](bootstrap-skeleton/spec.md) | — | Draft | Initial scaffold and TODOs only; no MVP behavior |
-| [`in-memory-social-deduplication/`](in-memory-social-deduplication/spec.md) | — | In progress | User-authorized in-memory first-seen deduplication by source and external ID; local AI-Init file only |
+| [`20261106-bootstrap-skeleton/`](specs/20261106-bootstrap-skeleton/spec.md) | — | Done | Initial scaffold and TODOs only; no MVP behavior |
+| [`20261106-in-memory-social-deduplication/`](specs/20261106-in-memory-social-deduplication/spec.md) | — | Done | User-authorized in-memory first-seen deduplication by source and external ID; local AI-Init file only |
+| [`20261106-normalizacao-de-fixtures-alpha-beta/`](specs/20261106-normalizacao-de-fixtures-alpha-beta/spec.md) | — | Done | Adapters Alpha/Beta que normalizam fixtures sociais sintéticas |
+| [`20261106-persistencia-de-posts-postgres/`](specs/20261106-persistencia-de-posts-postgres/spec.md) | — | Done | Persistência de posts normalizados no PostgreSQL |
+| [`20261106-jar-biblioteca/`](specs/20261106-jar-biblioteca/spec.md) | — | Done | Build gera jar comum (biblioteca) e executável |
+| [`20261106-contrato-de-persistencia-do-dashboard/`](specs/20261106-contrato-de-persistencia-do-dashboard/spec.md) | — | Done | Integra as bibliotecas de coleta ao contrato de persistência do dashboard |
+| [`20261106-renomeacao-collector-runner-mini/`](specs/20261106-renomeacao-collector-runner-mini/spec.md) | — | Done | Renomeação para poc-collector-runner e referências ao poc-dashboard |
+| [`20261106-versoes-maven-em-properties/`](specs/20261106-versoes-maven-em-properties/spec.md) | — | Done | Versões de dependências centralizadas em properties |
+| [`20261106-paginacao-e-filtros/`](specs/20261106-paginacao-e-filtros/spec.md) | — | Done | Rascunho a partir do TODO.md do projeto |
+| [`20261106-retencao-e-privacidade/`](specs/20261106-retencao-e-privacidade/spec.md) | — | Done | Rascunho a partir do TODO.md do projeto e README (Pending) |
+| [`20261106-rota-de-ingestao-das-fixtures/`](specs/20261106-rota-de-ingestao-das-fixtures/spec.md) | — | Done | Rascunho a partir do TODO.md do projeto |
+| [`20261106-ai-init-adocao-v2/`](specs/20261106-ai-init-adocao-v2/spec.md) | — | In progress | `fc05cc8` + `.ai-init`, workflows e contexto agora versionados na branch local; doc-check, guard `.env` e agent-setup verificados; GitHub CI aguarda publicação e revisão por IA depende de `ANTHROPIC_API_KEY` |
+| [`20261110-atualizar-java-27/`](specs/20261110-atualizar-java-27/spec.md) | — | In progress | JDK 27.0.1.0.3, Boot 4.1.2; `mvn -B clean verify` passou com 27 testes em 2026-11-11; perfil `postgres-it` ainda depende de Docker e a branch permanece local |
