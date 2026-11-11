@@ -1,0 +1,1 @@
+2026-11-11T07:24:00-03:00 | /test-plan + /implement-spec + /validate-implementation | Decisões aplicadas; Java 27 clean verify passou com 27 testes. PostgreSQL Failsafe executado e falhou: Testcontainers não encontrou Docker.
