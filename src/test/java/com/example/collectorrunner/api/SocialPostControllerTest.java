@@ -45,6 +45,12 @@ class SocialPostControllerTest {
     }
 
     @Test
+    void rejectsOutOfRangePageSize() throws Exception {
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/v1/posts?size=101"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void exposesOpenApiDocument() throws Exception {
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/v3/api-docs"))
                 .andExpect(status().isOk())

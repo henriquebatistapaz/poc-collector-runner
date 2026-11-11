@@ -45,6 +45,23 @@ class SocialPostPersistenceServiceTest {
     }
 
     @Test
+    void filtersBySourceAndPaginatesNewestFirst() {
+        service.acceptNew(List.of(post("alpha", "a1", "older"), post("alpha", "a2", "newer"), post("beta", "b1", "newer")));
+        assertEquals(2, service.findPage("alpha", 0, 20).size());
+        assertEquals(1, service.findPage("alpha", 1, 1).size());
+        assertEquals(List.of(), service.findPage("alpha", 5, 20));
+        assertEquals(3, service.findPage(null, 0, 20).size());
+        assertEquals(3, service.findPage("  ", 0, 20).size());
+    }
+
+    @Test
+    void rejectsInvalidPageAndSize() {
+        assertThrows(IllegalArgumentException.class, () -> service.findPage(null, -1, 20));
+        assertThrows(IllegalArgumentException.class, () -> service.findPage(null, 0, 0));
+        assertThrows(IllegalArgumentException.class, () -> service.findPage(null, 0, 101));
+    }
+
+    @Test
     void enforcesDatabaseFieldLengths() {
         assertThrows(IllegalArgumentException.class, () -> service.acceptNew(List.of(post("x".repeat(101), "id", "bad"))));
         assertThrows(IllegalArgumentException.class, () -> service.acceptNew(List.of(post("alpha", "x".repeat(501), "bad"))));

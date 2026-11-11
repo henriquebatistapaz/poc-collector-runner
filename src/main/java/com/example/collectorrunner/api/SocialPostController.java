@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -40,9 +41,16 @@ public class SocialPostController {
     }
 
     @GetMapping
-    @Operation(summary = "List persisted normalized social posts, newest publication first")
-    public List<NormalizedSocialPost> list() {
-        return posts.findAll();
+    @Operation(summary = "List persisted normalized social posts, newest publication first, with optional source filter and pagination (page from 0, size 1-100, default 20)")
+    public List<NormalizedSocialPost> list(
+            @RequestParam(name = "source", required = false) String source,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "20") int size) {
+        try {
+            return posts.findPage(source, page, size);
+        } catch (IllegalArgumentException exception) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage(), exception);
+        }
     }
 
     public record PostIngestionResponse(String source, String externalId, String status) {}

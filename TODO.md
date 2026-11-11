@@ -7,7 +7,7 @@
 - [x] Add `POST /v1/posts` ingestion and `GET /v1/posts` listing.
 - [x] Add local PostgreSQL Compose configuration and H2-backed JUnit tests.
 - [x] Expose both API operations in OpenAPI and Swagger UI.
-- [ ] Add pagination and filters after approving query semantics.
+- [x] Add pagination and filters after approving query semantics (`?source`, `page` from 0, `size` 1-100, default 20).
 - [ ] Define retention, deletion/takedown, and privacy behavior before production use.
 - [ ] Connect fixture adapters to a controlled ingestion route after approving its contract.
 - [ ] Consider ActiveMQ Classic only if asynchronous job delivery is needed; consider Kafka only for replay or multiple independent consumers.
