@@ -4,7 +4,7 @@ Biblioteca Maven e API Spring Boot que grava itens coletados no PostgreSQL.
 
 ## Validação local
 
-Use JDK 21 e Maven 3.9. Execute os comandos a partir da raiz do repositório.
+Use OpenJDK 27.0.1.0.3, Spring Boot 4.1.2 e Maven 3.9 ou superior. Execute os comandos a partir da raiz do repositório.
 
 ```sh
 mvn -f ../poc-collector/pom.xml clean install
