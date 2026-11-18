@@ -9,10 +9,15 @@ Private Java 27 / Maven 3.9 library and standalone synthetic-post API. Lombok su
 | Source | Input | Behavior |
 | --- | --- | --- |
 | `RSS` | Public RSS 2.0 / Atom 1.0 URL | Reuses the RSS library's bounded HTTP fetcher and parser |
-| `GOOGLE_NEWS` | Search query, up to 200 characters | Reuses the existing Google News collector |
-| `GOOGLE_ALERTS` | User-owned Google Alerts feed URL | Treat the URL as a secret; do not log or commit it |
+| `GOOGLE_NEWS` | Search query, up to 200 characters | Reuses the Google News RSS search collector |
+| `MASTODON` | Hashtag | Public Mastodon.social JSON timeline |
+| `LEMMY` | Search term | Public Lemmy.world JSON search |
+| `DEV_TO` | Tag or `@username` | Public DEV.to articles API |
+| `HACKER_NEWS` | Search term | Public Algolia Hacker News API |
+| `STACK_EXCHANGE` | Search term | Public Stack Overflow endpoint |
+| `GITHUB` | Repository search term | Public GitHub repository API |
+| `TABNEWS` | Strategy, `@username`, or title keyword | Public TabNews JSON contents API; keyword filtering is local |
 | `WORDPRESS` | Public HTTPS feed URL | Reuses the existing WordPress URL policy and collector |
-| `REDDIT` | Subreddit | Requires official approval and all existing OAuth environment settings |
 | `ALPHA`, `BETA` | Synthetic fixture JSON | Reuses the existing social adapters, not real social providers |
 | `ISSUU` | Any input | Unavailable until a permitted route is verified |
 
@@ -22,7 +27,7 @@ One manual run fetches, parses, validates and writes at most 1,000 items. It ret
 
 `poc-dashboard` owns Flyway migrations for `collected_item`. The runner only inserts through a supplied `DataSource`; it creates no canonical tables. Required fields: source (40 chars), external ID (2,000), link (2,000); optional title (1,000) and publication instant; collection time is assigned by the runner. Social text maps to title, permalink to link; author/full social text remain outside this dashboard read contract.
 
-A unique `(source, external_id)` key and PostgreSQL `ON CONFLICT DO NOTHING` ensure first-write-wins deduplication, including concurrent writers. A repeated item never overwrites its original content. Each batch commits in its own JDBC transaction and rolls back completely on failure. Do not call it expecting participation in an outer Spring transaction. RSS IDs include a SHA-256 namespace of the trimmed feed URL so separate feeds can reuse the same GUID; changing that URL creates a different namespace.
+A unique `(source, external_id)` key and PostgreSQL `ON CONFLICT DO NOTHING` ensure first-write-wins deduplication, including concurrent writers. A repeated item never overwrites its original content. Each batch commits in its own JDBC transaction and rolls back completely on failure. Do not call it expecting participation in an outer Spring transaction. REST providers use fixed HTTPS hosts, a bounded JDK HTTP client, gzip support and no redirects. Google Alerts and Reddit collection are removed; existing collected item/run history remains readable. RSS IDs include a SHA-256 namespace of the trimmed feed URL so separate feeds can reuse the same GUID; changing that URL creates a different namespace.
 
 The existing standalone `social_posts` table/API is preserved. Historical social rows are not migrated or copied automatically. New Alpha/Beta runs through the dashboard write directly to `collected_item`. The runner's standalone defaults live in `collector-runner.properties`, loaded only by its own application; they cannot replace the dashboard's database configuration.
 
