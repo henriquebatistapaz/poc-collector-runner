@@ -85,7 +85,7 @@ class DefaultCollectionGatewayTest {
         HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
         server.createContext("/", exchange -> {
             String path = exchange.getRequestURI().getPath();
-            String key = path.startsWith("/mastodon/") ? "/mastodon" : path.startsWith("/lobsters/") ? "/lobsters" : path;
+            String key = path.startsWith("/mastodon") ? "/mastodon" : path.startsWith("/lobsters") ? "/lobsters" : path;
             byte[] body = bodies.getOrDefault(key, "{}").getBytes(StandardCharsets.UTF_8);
             exchange.getResponseHeaders().set("Content-Type", "application/json");
             exchange.sendResponseHeaders(200, body.length);
