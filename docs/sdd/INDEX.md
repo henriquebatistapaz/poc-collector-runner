@@ -26,5 +26,7 @@ Rules: agents NEVER set `Approved`. A spec that needs rework after approval goes
 | [`20261106-paginacao-e-filtros/`](specs/20261106-paginacao-e-filtros/spec.md) | — | Done | Rascunho a partir do TODO.md do projeto |
 | [`20261106-retencao-e-privacidade/`](specs/20261106-retencao-e-privacidade/spec.md) | — | Done | Rascunho a partir do TODO.md do projeto e README (Pending) |
 | [`20261106-rota-de-ingestao-das-fixtures/`](specs/20261106-rota-de-ingestao-das-fixtures/spec.md) | — | Done | Rascunho a partir do TODO.md do projeto |
-| [`20261106-ai-init-adocao-v2/`](specs/20261106-ai-init-adocao-v2/spec.md) | — | In progress | `fc05cc8` + `.ai-init`, workflows e contexto agora versionados na branch local; doc-check, guard `.env` e agent-setup verificados; GitHub CI aguarda publicação e revisão por IA depende de `ANTHROPIC_API_KEY` |
+| [`20261106-ai-init-adocao-v2/`](specs/20261106-ai-init-adocao-v2/spec.md) | — | Done | Guardrails e adoção v2 validados localmente (doc-check, hooks e workflows) |
 | [`20261110-atualizar-java-27/`](specs/20261110-atualizar-java-27/spec.md) | — | In progress | JDK 27.0.1.0.3, Boot 4.1.2; `mvn -B clean verify` passou com 27 testes em 2026-11-11; perfil `postgres-it` ainda depende de Docker e a branch permanece local |
+| [`20261118-fontes-abertas-wikipedia-gitlab-lobsters/`](specs/20261118-fontes-abertas-wikipedia-gitlab-lobsters/spec.md) | — | Approved | born from macro-spec 20261118-fontes-abertas-wikipedia-gitlab-lobsters — Gate 1 inherited |
+| [`20261119-padronizar-maven-wrapper/`](specs/20261119-padronizar-maven-wrapper/spec.md) | — | Done | Spec filha da macro 20261119-padronizar-maven-wrapper; wrapper Maven para 1 POM(s), sem alterar JDK ou comportamento. |
