@@ -1,5 +1,6 @@
 package com.example.collectorrunner.persistence;
 
+import lombok.Data;
 import com.example.collectorrunner.domain.NormalizedSocialPost;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +16,7 @@ import java.time.Instant;
 @Entity
 @Table(name = "social_posts", uniqueConstraints = @UniqueConstraint(
         name = "uk_social_posts_source_external_id", columnNames = {"source", "external_id"}))
+@Data
 public class SocialPostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
