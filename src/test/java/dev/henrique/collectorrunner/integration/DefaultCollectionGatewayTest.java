@@ -1,8 +1,8 @@
 package dev.henrique.collectorrunner.integration;
 
 import dev.henrique.rsscollector.application.RssFeedLinkValidator;
-import com.henrique.collector.feed.RssFeedParser;
-import com.henrique.collector.source.*;
+import dev.henrique.collector.feed.RssFeedParser;
+import dev.henrique.collector.source.*;
 import java.nio.charset.StandardCharsets;
 import java.net.InetSocketAddress;
 import java.net.URI;
@@ -24,7 +24,7 @@ class DefaultCollectionGatewayTest {
         """;
 
     private DefaultCollectionGateway gateway() {
-        com.henrique.collector.feed.FeedFetcher fetcher = uri -> RSS.getBytes(StandardCharsets.UTF_8);
+        dev.henrique.collector.feed.FeedFetcher fetcher = uri -> RSS.getBytes(StandardCharsets.UTF_8);
         var parser = new RssFeedParser();
         var collectors = new CollectorService(new SourceRegistry(), new GoogleNewsCollector(fetcher, parser),
                 new WordPressFeedCollector(fetcher, parser));
