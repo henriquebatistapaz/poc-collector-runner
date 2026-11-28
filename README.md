@@ -65,3 +65,9 @@ Defaults: database `social_adapter` on localhost:5432; override `DB_URL`, `DB_US
 ## Pending
 
 Historical social-row migration, durable run history and a user interface are future work. The dashboard is the controlled fixture ingestion route; no duplicate fixture-only HTTP route is exposed by the runner. ActiveMQ Classic is the work-queue option if asynchronous execution is approved; Kafka is reserved for replay or multiple independent consumers.
+
+## Publicação de eventos Kafka
+
+Ative `RUNNER_EVENTS_ENABLED=true` e configure `KAFKA_BOOTSTRAP_SERVERS` para publicar novos posts aceitos pela API como `item.collected` em `collector.items`. Use `RUNNER_EVENTS_TOPIC` para selecionar outro tópico. A configuração padrão mantém a publicação desativada.
+
+O runner insere o envelope na tabela `collected_event_outbox` na mesma transação que aceita o post. O agendador remove a entrada somente após a confirmação do Kafka. Uma interrupção entre a confirmação e a remoção pode entregar o mesmo evento novamente com o mesmo `eventId`. O publicador pressupõe uma instância ativa do runner por banco.

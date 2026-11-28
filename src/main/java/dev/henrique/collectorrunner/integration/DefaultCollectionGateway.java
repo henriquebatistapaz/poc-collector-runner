@@ -3,8 +3,8 @@ package dev.henrique.collectorrunner.integration;
 import dev.henrique.rsscollector.application.BoundedFeedHttpFetcher;
 import dev.henrique.rsscollector.application.FeedDocumentFetcher;
 import dev.henrique.rsscollector.application.RssFeedLinkValidator;
-import com.henrique.collector.feed.JdkHttpFeedFetcher;
-import com.henrique.collector.source.*;
+import dev.henrique.collector.feed.JdkHttpFeedFetcher;
+import dev.henrique.collector.source.*;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -31,7 +31,7 @@ public final class DefaultCollectionGateway implements CollectionGateway {
     public static DefaultCollectionGateway fromEnvironment(Map<String, String> environment,
                                                             Map<CollectionSource, URI> restEndpoints) {
         var fetcher = new JdkHttpFeedFetcher();
-        var parser = new com.henrique.collector.feed.RssFeedParser();
+        var parser = new dev.henrique.collector.feed.RssFeedParser();
         var service = new CollectorService(new SourceRegistry(),
                 new GoogleNewsCollector(fetcher, parser),
                 new WordPressFeedCollector(fetcher, parser),

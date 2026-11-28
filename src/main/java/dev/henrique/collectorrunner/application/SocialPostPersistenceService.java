@@ -1,6 +1,8 @@
 package dev.henrique.collectorrunner.application;
 
 import dev.henrique.collectorrunner.domain.NormalizedSocialPost;
+import dev.henrique.collectorrunner.events.CollectedEvents;
+import org.springframework.beans.factory.annotation.Autowired;
 import dev.henrique.collectorrunner.persistence.SocialPostEntity;
 import dev.henrique.collectorrunner.persistence.SocialPostRepository;
 import java.util.ArrayList;
@@ -16,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class SocialPostPersistenceService {
     private final SocialPostRepository repository;
 
+    @Autowired(required = false)
+    private CollectedEvents events;
+
 
     @Transactional
     public List<NormalizedSocialPost> acceptNew(List<NormalizedSocialPost> posts) {
@@ -27,7 +32,9 @@ public class SocialPostPersistenceService {
             String source = post.source().trim();
             String externalId = post.externalId().trim();
             if (!repository.existsBySourceAndExternalId(source, externalId)) {
-                accepted.add(repository.save(new SocialPostEntity(post)).toDomain());
+                var saved = repository.save(new SocialPostEntity(post)).toDomain();
+                if (events != null) events.record(saved);
+                accepted.add(saved);
             }
         }
         return List.copyOf(accepted);
